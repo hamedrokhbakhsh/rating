@@ -1,0 +1,13 @@
+<form [formGroup]="form">
+ <div formArrayName="items">
+   <div *ngFor="let question of data;let i=index">
+      <div [formGroupName]="i">
+        <h4>{{i}}-{{question.question}}</h4>
+        <ngx-star-rating  [id]="i" formControlName="rate" ></ngx-star-rating>
+        <p>form is valid: {{ form.valid ? 'true' : 'false' }}</p>
+      </div>
+   </div>
+{{form?.value|json}}
+ </div>
+  <input type="submit" value="submit" />
+</form>
