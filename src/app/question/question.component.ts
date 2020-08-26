@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AppService} from '../services/app.service';
+import {QuestionModel} from '../models/question-model';
 
 @Component({
   selector: 'app-question',
@@ -7,44 +9,60 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-  data = [
-    {
-      id: '12345g',
-      question: 'number 1',
-      rating: 0
-    },
-    {
-      id: '123123',
-      question: 'number 1',
-      rating: 0
-    },
-    {
-      id: '12543g',
-      question: 'number 1',
-      rating: 0
-    }
+  data = [];
 
-  ];
-
+  receptionId = {
+    id: '79EC2DFA-C7E7-48E0-9A1D-B119FA021B30'
+  };
+  questions: QuestionModel[] = [];
   public form: FormGroup;
   private rating3: number;
-  constructor(private fb: FormBuilder) {
-    this.rating3 = 0;
-    const formItems:FormGroup[]=[];
-    this.data.forEach(item=>{
-      formItems.push(this.fb.group(
-        {
-          quesrtion: [item.id],
-          rate: [item.rating]
+
+  constructor(private fb: FormBuilder , private service: AppService) {
+
+
+
+    this.service.getQuestion(this.receptionId).subscribe(res => {
+      if (res.status){
+        for (const i of res.data){
+          this.questions.push({id : i.id , question: i.QuestionTitle, rating: 0});
         }
-      ))
-    })
-    this.form = this.fb.group({
-     items:this.fb.array(formItems)
+
+        console.log(res)
+        this.data = this.questions;
+        this.setItem(this.data);
+
+      }else {
+        console.log(res.errorMessage);
+      }
     });
+
+
   }
 
   ngOnInit(): void {
+
   }
 
+  submit() {
+    console.log(this.form.value);
+  }
+
+
+  setItem(data){
+    // console.log(data);
+    this.rating3 = 0;
+    const formItems: FormGroup[] = [];
+    data.forEach(item => {
+      formItems.push(this.fb.group(
+        {
+          id: [item.id],
+          rate: [item.rating]
+        }
+      ));
+    });
+    this.form = this.fb.group({
+      items: this.fb.array(formItems)
+    });
+  }
 }

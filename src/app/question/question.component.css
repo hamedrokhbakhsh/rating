@@ -1,0 +1,19 @@
+.under-block {
+  height: 1px;
+  width: 100%;
+  background: #28a745;
+}
+h1 , input{
+  font-family:BZiba,'BZiba',tahoma;
+  color: white;
+}
+h4 {
+  font-family:BZiba,'BZiba',tahoma;
+  color: black;
+}
+.card{
+  background: #28a745;
+}
+.container{
+  margin-top: 5em;
+}

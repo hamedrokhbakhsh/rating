@@ -1,0 +1,8 @@
+h1 , input{
+  font-family:BZiba,'BZiba',tahoma;
+  color: white;
+}
+.card {
+  height: 5em;
+  background: #28a745;
+}
