@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AppService} from '../services/app.service';
 import {QuestionModel} from '../models/question-model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-question',
@@ -18,7 +19,7 @@ export class QuestionComponent implements OnInit {
   public form: FormGroup;
   private rating3: number;
 
-  constructor(private fb: FormBuilder , private service: AppService) {
+  constructor(private fb: FormBuilder , private service: AppService , private router: Router) {
 
 
 
@@ -46,6 +47,7 @@ export class QuestionComponent implements OnInit {
 
   submit() {
     console.log(this.form.value);
+    this.router.navigate(['/result']);
   }
 
 

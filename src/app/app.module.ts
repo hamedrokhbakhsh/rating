@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppService} from './services/app.service';
 import { HeaderComponent } from './header/header.component';
 import { ResultPageComponent } from './result-page/result-page.component';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ResultPageComponent } from './result-page/result-page.component';
     NgxStarRatingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule ,
+    AppRoutingModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]
